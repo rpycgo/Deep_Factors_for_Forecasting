@@ -17,9 +17,8 @@ class DFRNNNoise(Layer):
         self.dense = Dense(units=1)
 
     def call(self, inputs):
-        _, _hidden_state, cell_state = self.lstm(inputs)
-        hidden_state = self.dense(_hidden_state)
+        hidden_state, _, _ = self.lstm(inputs)
         _sigma = self.dense(hidden_state)
-        sigma = tf.reshape(_sigma, shape=(self.config.batch_size, -1))
+        sigma = tf.squeeze(_sigma)
 
         return sigma
