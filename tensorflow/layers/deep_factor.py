@@ -6,7 +6,7 @@ from tensorflow.keras.layers import Layer, LSTM, Dense
 
 class DeepFactor(Layer):
     def __init__(self, config=model_config, **kwargs):
-        super(DeepFactor, self).__init__(name='deep_factor')
+        super(DeepFactor, self).__init__(**kwargs)
         self.config = config
         self.global_factors = [
             LSTM(
